@@ -12,9 +12,18 @@
 
 // console.log(fs.readdir('./'));
 
-const fs = require('fs');
+// const fs = require('fs');
 
-fs.readdir('./', function(err, files) {
-    if (err) console.log('ERR: ' + err);
-    else console.log('OK, result files: ' + files);
+// fs.readdir('./', function(err, files) {
+//     if (err) console.log('ERR: ' + err);
+//     else console.log('OK, result files: ' + files);
+// });
+
+const EventEmmiter = require('events');
+const emmiter = new EventEmmiter();
+
+emmiter.on('method_for_listener', () => {
+    console.log('poziv listenera iz event-a');
 });
+
+emmiter.emit('method_for_listener');
