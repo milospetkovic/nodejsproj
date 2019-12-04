@@ -22,8 +22,9 @@
 const EventEmmiter = require('events');
 const emmiter = new EventEmmiter();
 
-emmiter.on('method_for_listener', () => {
+emmiter.on('method_for_listener', (args) => {
+    console.log(args);
     console.log('poziv listenera iz event-a');
 });
 
-emmiter.emit('method_for_listener');
+emmiter.emit('method_for_listener', { id: 12, 'key': 'value' });
