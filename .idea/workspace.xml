@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21adbd67-1160-4d29-9a96-f2102e0618db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="21adbd67-1160-4d29-9a96-f2102e0618db" name="Default Changelist" comment="ECMA type script 6 way of printing variables (without single quotes and concatenation)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,13 +53,28 @@
       <option name="project" value="LOCAL" />
       <updated>1575463315706</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="gitignore">
+      <created>1575463389510</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1575463389510</updated>
+    </task>
+    <task id="LOCAL-00004" summary="ECMA type script 6 way of printing variables (without single quotes and concatenation)">
+      <created>1575464027009</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575464027009</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="export variable/function from one module (logger.js) to main module (app.js)" />
     <MESSAGE value="every module is wrapped in so called module wrapper function (example in comments)" />
     <MESSAGE value="gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore" />
+    <MESSAGE value="ECMA type script 6 way of printing variables (without single quotes and concatenation)" />
+    <option name="LAST_COMMIT_MESSAGE" value="ECMA type script 6 way of printing variables (without single quotes and concatenation)" />
   </component>
 </project>
