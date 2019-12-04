@@ -1,9 +1,15 @@
-// var logger = require('./logger');
+const os = require('os');
+
+
+var totMem = os.totalmem();
+
+var freeMem = os.freemem();
+
+
+// console.log('Total memory: ' + totMem);
 //
-// console.log(logger);
+// console.log('Free memory: ' + freeMem);
 
-const path = require('path');
-
-var pathObj = path.parse(__filename);
-
-console.log(pathObj);
+// ECMA (type script 6 way of printing variables (without single quotes and concatenation))
+console.log(`Total memory: ${totMem}`);
+console.log(`Free memory ${freeMem}`);
