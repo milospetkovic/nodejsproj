@@ -1,21 +1,26 @@
 //(function (exports, require, module, __filename, __dirname) {
 
-    console.log(__filename);
+    // console.log(__filename);
 
-    console.log(__dirname);
+    // console.log(__dirname);
 
+const EventEmmiter = require('events');
 
-    var url = 'http://elitasoft.com';
+class Logger extends EventEmmiter {
 
-    function log(message) {
+    log(message) {
         console.log(message);
-    }
+        this.emit('message_loaded', { id: 12, 'key': 'value'});
+    }    
 
-    // export log function
-    module.exports.log = log;
+}
 
-    // export url variable (endpoint)
-    module.exports.endPointUrl = url;
+// var url = 'http://elitasoft.com';
+
+// // export url variable (endpoint)
+// module.exports.endPointUrl = url;
+
+module.exports = Logger;
 
 //});
 

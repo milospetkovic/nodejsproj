@@ -19,12 +19,46 @@
 //     else console.log('OK, result files: ' + files);
 // });
 
-const EventEmmiter = require('events');
-const emmiter = new EventEmmiter();
+//const EventEmmiter = require('events');
 
-emmiter.on('method_for_listener', (args) => {
-    console.log(args);
-    console.log('poziv listenera iz event-a');
+// const Logger = require('./logger');
+
+// logger = new Logger();
+
+
+// // listener
+// logger.on('message_loaded', (arg) => {
+
+//     console.log('listener ispisuje - message has been loaded with arguments: ' + arg);
+
+// });
+
+
+// logger.log('ovde je neka poruka');
+
+const server = require('http');
+
+const httpServer = server.createServer( function(req, res) {
+
+    console.log('server je kreiran');
+
+    if (req.url ==='/') {
+        res.write('Pozvana je home strana');
+        res.end();
+    }
+
+    if (req.url === '/api/getcourses') {
+        res.write(JSON.stringify([1,2,3]));
+        res.end();
+    }
+
 });
 
-emmiter.emit('method_for_listener', { id: 12, 'key': 'value' });
+var port_number = 3123;
+
+httpServer.listen(port_number);
+
+console.log(`Listening on port ${port_number}`);
+
+
+//const server = new 
