@@ -30,6 +30,22 @@ app.get('/', (req, res) => {
 app.get('/api/courses', (req, res) => {
     res.send([1, 2, 3]);
 });
+
+// an example for getting one course
+app.get('/api/courses/:id', (req, res) => {
+    res.send(req.params.id);    
+});
+
+// return all params for resourse (year/month in this casa) call url for i.e. /api/courses/2019/12
+app.get('/api/courses/:year/:month', (req, res) => {
+    res.send(req.params);    
+});
+
+// with this method server return all params which are provided after ? sign in the url (comment above method to see this method in action..) 
+// for i.e. /api/courses/2019/12?sortBy=name
+app.get('/api/courses/:year/:month', (req, res) => {
+    res.send(req.query);    
+});
 /* end Routes */
 
 // the number of port where server is listening for requests
