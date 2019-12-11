@@ -21,6 +21,12 @@ const app = express();
 // delete an object
 //app.delete();
 
+const courses = [
+    {id: 1, name: "course1"},
+    {id: 2, name: "course2"},
+    {id: 3, name: "course3"},
+];
+
 
 /* Routes */
 app.get('/', (req, res) => {
@@ -28,23 +34,32 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/courses', (req, res) => {
-    res.send([1, 2, 3]);
+    res.send(courses);
 });
 
 // an example for getting one course
+// app.get('/api/courses/:id', (req, res) => {
+//     res.send(req.params.id);    
+// });
+
+// // return all params for resourse (year/month in this casa) call url for i.e. /api/courses/2019/12
+// app.get('/api/courses/:year/:month', (req, res) => {
+//     res.send(req.params);    
+// });
+
+// // with this method server return all params which are provided after ? sign in the url (comment above method to see this method in action..) 
+// // for i.e. /api/courses/2019/12?sortBy=name
+// app.get('/api/courses/:year/:month', (req, res) => {
+//     res.send(req.query);    
+// });
+
+// return course with id or 404 page if course isn't found with additional info/message that course doesn't exist
 app.get('/api/courses/:id', (req, res) => {
-    res.send(req.params.id);    
-});
-
-// return all params for resourse (year/month in this casa) call url for i.e. /api/courses/2019/12
-app.get('/api/courses/:year/:month', (req, res) => {
-    res.send(req.params);    
-});
-
-// with this method server return all params which are provided after ? sign in the url (comment above method to see this method in action..) 
-// for i.e. /api/courses/2019/12?sortBy=name
-app.get('/api/courses/:year/:month', (req, res) => {
-    res.send(req.query);    
+    let course = courses.find(c => c.id === parseInt(req.params.id));
+    if (!course) {
+        res.status(404).send('ID of course doesn\'t exist');
+    }
+    res.send(course);    
 });
 /* end Routes */
 
