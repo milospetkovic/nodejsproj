@@ -33,10 +33,14 @@ app.get('/api/courses', (req, res) => {
 /* end Routes */
 
 // the number of port where server is listening for requests
-var port_for_http_listening = 3000;
+// process.env is object which is provided from node
+// to set PORT variable just type in terminal (must be in nodejs project dir) export PORT=5000
+// and now server will be listening on port 5000
+// in case PORT variable isn't provided the server will be listening on the 3000 port
+var port_for_http_listening = process.env.PORT || 3000;
 
 // start server by listening on the given port and print out the info message to the console
-app.listen(port_for_http_listening, () => console.log('Listening on port ' + port_for_http_listening));
+app.listen(port_for_http_listening, () => console.log(`Listening on port ${port_for_http_listening}`));
 
 /* USAGE */
 // start nodejs server by placing in this, express-demo directory, and execute command
