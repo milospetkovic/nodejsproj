@@ -1,5 +1,7 @@
 const Joi = require('joi');
 
+let randomstring = require("randomstring");
+
 const express = require('express');
 
 const app = express();
@@ -9,7 +11,8 @@ app.use = express.json();
 const genres = [];
 
 /* Routes for application */
-// get genre
+
+// get all genres
 app.get('/api/genres', (req, res) => {
 
     console.log(genres);
@@ -23,10 +26,27 @@ app.get('/api/genres', (req, res) => {
 });
 
 
+// create genre
 app.post('/api/genres', (req, res) => {
-    console.log('ok ovde f-ja za kreiranja genre-a');
-    res.sendStatus(202);
+    // console.log('ok ovde f-ja za kreiranja genre-a');
+    // res.sendStatus(202);
+
+    const genre = {
+        id: genres.length + 1,
+        name: randomstring.generate(7)
+    };
+
+    genres.push(genre);
+
+    return res.send(genres);
+
 });
+
+// update genre
+
+// delete genre
+
+
 /* end Routes */
 
 
@@ -36,6 +56,8 @@ app.listen(app_port, function() {
     console.log('applikacija slusa na portu ' + app_port);
 });
 
-
+function doesGenreIDExists(idGerne) {
+    
+}
 
 //api/genres
