@@ -4,12 +4,17 @@
 // now install express module (needed for faster building web server)
 // npm i express
 
+// get joi module (module for validation inputs)
+const Joi = require('joi');
 
 // get express module
 const express = require('express');
 
 // initiate new express object 
 const app = express();
+
+// needed to define that request or response will be in json format
+app.use(express.json());
 
 /* express methods for basic manipulationg with data (CRUD) */
 // get data from the server
@@ -54,13 +59,41 @@ app.get('/api/courses', (req, res) => {
 // });
 
 // return course with id or 404 page if course isn't found with additional info/message that course doesn't exist
-app.get('/api/courses/:id', (req, res) => {
-    let course = courses.find(c => c.id === parseInt(req.params.id));
-    if (!course) {
-        res.status(404).send('ID of course doesn\'t exist');
+// app.get('/api/courses/:id', (req, res) => {
+//     let course = courses.find(c => c.id === parseInt(req.params.id));
+//     if (!course) {
+//         res.status(404).send('ID of course doesn\'t exist');
+//     }
+//     res.send(course);    
+// });
+
+
+app.post('/api/courses', (req, res) => {    
+    
+    const schema = {
+        name: Joi.string().min(3).required()
+    };
+
+    const resultValidate = Joi.validate(req.body, schema);
+
+    if (resultValidate.error) {
+        res.status(400).send(resultValidate.error);
+        //res.status(400).send(resultValidate.error.details[0].message);
+        console.log('POSTOJI GRESKA!');
+        return;
     }
-    res.send(course);    
+
+    const course = {
+        id: courses.length + 1,
+        name: req.body.name
+    };
+
+    courses.push(course);
+
+    res.send(course);
+
 });
+
 /* end Routes */
 
 // the number of port where server is listening for requests
