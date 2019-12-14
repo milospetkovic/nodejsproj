@@ -26,6 +26,11 @@ const authent = require('./authentication.js');
 // initiate new express object 
 const app = express();
 
+app.set('view engine', 'pug');
+app.set('views', './views'); // default
+
+
+
 //console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
 //console.log(`app: ${app.get('env')}`);
 
@@ -82,7 +87,8 @@ const courses = [
 
 /* Routes */
 app.get('/', (req, res) => {
-    res.send('Hey, this is response from the server!');
+    res.render('index', {title: 'My express APP', message: 'Hello'});
+    //res.send('Hey, this is response from the server!');
 });
 
 app.get('/api/courses', (req, res) => {
