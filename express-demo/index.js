@@ -4,6 +4,10 @@
 // now install express module (needed for faster building web server)
 // npm i express
 
+const morgan = require('morgan');
+
+const helmet = require('helmet');
+
 // get joi module (module for validation inputs)
 const Joi = require('joi');
 
@@ -28,6 +32,10 @@ app.use(express.urlencoded( {extended: true}));
 // if we create readme.txt file in the public folder then it will be reachable 
 // from the server via url http://localhost:3000/readme.txt
 app.use(express.static('public'));
+
+app.use(helmet());
+
+app.use(morgan('tiny'));
 
 // middleware 1 (loging) - express (loaded from other file)
 app.use(logger);
