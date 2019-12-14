@@ -4,6 +4,9 @@
 // now install express module (needed for faster building web server)
 // npm i express
 
+const startupDebuger = require('debug')('app:startup');
+const dbDebuger = require('debug')('app:db');
+
 const config = require('config');
 
 const morgan = require('morgan');
@@ -48,7 +51,11 @@ console.log('Host password: ' + config.get('host_info.password'));
 if (app.get('env') === 'development') {
     console.log('Development mode - we\'ve started logging each request in the console');
     app.use(morgan('tiny'));
+    startupDebuger('Morgan enabled because env is set in development mode');
 }
+
+// DB work
+dbDebuger('Connected to the database...');
 
 // middleware 1 (loging) - express (loaded from other file)
 app.use(logger);
