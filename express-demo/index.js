@@ -4,6 +4,8 @@
 // now install express module (needed for faster building web server)
 // npm i express
 
+const config = require('config');
+
 const morgan = require('morgan');
 
 const helmet = require('helmet');
@@ -37,6 +39,11 @@ app.use(express.urlencoded( {extended: true}));
 app.use(express.static('public'));
 
 app.use(helmet());
+
+// Configuration
+console.log('Application Name: ' + config.get('name'));
+console.log('Host: ' + config.get('host_info.host'));
+console.log('Host password: ' + config.get('host_info.password'));
 
 if (app.get('env') === 'development') {
     console.log('Development mode - we\'ve started logging each request in the console');
