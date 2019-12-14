@@ -10,11 +10,21 @@ const Joi = require('joi');
 // get express module
 const express = require('express');
 
+const logger = require('./logger.js');
+
+const authent = require('./authentication.js');
+
 // initiate new express object 
 const app = express();
 
 // needed to define that request or response will be in json format
 app.use(express.json());
+
+// middleware 1 (loging) - express (loaded from other file)
+app.use(logger);
+
+// middleware 2 (authenticating) - express  (loaded from other file)
+app.use(authent);
 
 /* express methods for basic manipulationg with data (CRUD) */
 // get data from the server
