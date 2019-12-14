@@ -1,0 +1,1 @@
+Info about application detailed explained in the readme.txt file!

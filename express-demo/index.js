@@ -17,8 +17,17 @@ const authent = require('./authentication.js');
 // initiate new express object 
 const app = express();
 
-// needed to define that request or response will be in json format
+// needed to define that response will be in json format
 app.use(express.json());
+
+// needed to allow sending params from html input elements
+app.use(express.urlencoded( {extended: true}));
+
+// if we create public folder and place it under the root of the application
+// then we can have everything from that folder accessible via browser for instance.
+// if we create readme.txt file in the public folder then it will be reachable 
+// from the server via url http://localhost:3000/readme.txt
+app.use(express.static('public'));
 
 // middleware 1 (loging) - express (loaded from other file)
 app.use(logger);
