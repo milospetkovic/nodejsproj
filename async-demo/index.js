@@ -1,48 +1,54 @@
 console.log('Before');
-getUser(1, (user) => {
-    console.log('USER params: ', user);
-    console.log('now get user\'s github repos');
-    getUserGithubRepos(user.id, function(repos) {
-        console.log('User repositories: ', repos);
-        
-        console.log('now read user commits...')
-        getUserRepoCommites(user.name, (commits) => {            
-            if (commits.length > 0) {
-                console.log('User\s commits: ', commits);
-            } else {
-                console.log('User doesn\'t have commits in the repo');
-            }
-        })
-    })
-});
+getUser(1, retRepos);
 
 console.log('After');
 
-// 3 Types of async calling
-// 1. Callbacks
-// 2. Promises
-// 3. Async/await
+function retRepos(user) {    
+    getUserGithubRepos(user.name, getCommits);
+}
 
-// callback
+function getCommits(repos, getUserRepoCommits) {
+    displayCommits(displayCommits);
+}
+
+function displayCommits(commits) {
+    if (commits.length > 0) {
+        console.log('user\s commits: ', commits);
+    } else {
+        console.log('user doesn\'t have commits in the repo');
+    }
+}
+
+// callback get user
 function getUser(id, callback) {
-    setTimeout(() => {
-        console.log('Reading a user from a database...');
-        callback({ id: id, name: 'milos' });
+    //console.log('calback u user-u', callback);
+    console.log('Start reading a user from a database...');
+    setTimeout(() => {     
+        let user = { id: id, name: 'milos' };
+        console.log('user params: ', user);
+        callback(user);
     }, 2000);    
 }
 
-// get user repositories
-function getUserGithubRepos(id, calback) {
+// callback get user repositories
+function getUserGithubRepos(id, callback) {
+    //console.log('calback u getUserGithubRepos ', callback);
+    console.log('now read user repositories...');
     setTimeout(() => {
-        calback(['repo1', 'repo2', 'repo3']);
+        let repos = ['repo1', 'repo2', 'repo3'];
+        console.log('user repos: ', repos);
+        callback(repos);        
     }, 2000);    
 }
 
-function getUserRepoCommites(username, commits) {
+// callback get user repo commits
+function getUserRepoCommits(username, commits) {
+    console.log('now read user commits...');
     setTimeout((username) => {
-        console.log('Here will be developed connecting to the repo and get commits');
+        //console.log('Here will be developed connecting to the repo and get commits');
         //let commits_arr = [];
         let commits_arr = ['commit1', 'commit2', 'commit3' ];
+        //console.log('user repo commits: ', commits_arr);
         commits(commits_arr);
     }, 
     2000);
