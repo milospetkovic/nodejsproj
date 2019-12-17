@@ -1,54 +1,41 @@
 console.log('Before');
-getUser(1, retRepos);
+getUser(1, (user) => {    
+    console.log('USER params: ', user);
+    getUserGithubRepos(user.id, function(repos) {
+        console.log('USER repos: ', repos);
+        getUserRepoCommites(user.name, (commits) => {            
+            if (commits.length > 0) {
+                console.log('User\s commits: ', commits);
+            } else {
+                console.log('User doesn\'t have commits in the repo');
+            }
+        })
+    })
+});
 
 console.log('After');
 
-function retRepos(user) {    
-    getUserGithubRepos(user.name, getCommits);
+// callback
+function getUser(id, callback) {    
+    console.log('Reading a user from a database...');
+    setTimeout(() => {        
+        callback({ id: id, name: 'milos' });
+    }, 2000);
 }
 
-function getCommits(repos, getUserRepoCommits) {
-    displayCommits(displayCommits);
-}
-
-function displayCommits(commits) {
-    if (commits.length > 0) {
-        console.log('user\s commits: ', commits);
-    } else {
-        console.log('user doesn\'t have commits in the repo');
-    }
-}
-
-// callback get user
-function getUser(id, callback) {
-    //console.log('calback u user-u', callback);
-    console.log('Start reading a user from a database...');
-    setTimeout(() => {     
-        let user = { id: id, name: 'milos' };
-        console.log('user params: ', user);
-        callback(user);
-    }, 2000);    
-}
-
-// callback get user repositories
+// get user repositories
 function getUserGithubRepos(id, callback) {
-    //console.log('calback u getUserGithubRepos ', callback);
-    console.log('now read user repositories...');
+    console.log('now get user\'s github repos');
     setTimeout(() => {
-        let repos = ['repo1', 'repo2', 'repo3'];
-        console.log('user repos: ', repos);
-        callback(repos);        
+        callback(['repo1', 'repo2', 'repo3']);
     }, 2000);    
 }
 
-// callback get user repo commits
-function getUserRepoCommits(username, commits) {
-    console.log('now read user commits...');
-    setTimeout((username) => {
-        //console.log('Here will be developed connecting to the repo and get commits');
-        //let commits_arr = [];
+// get user repository commits
+function getUserRepoCommites(username, commits) {
+    console.log('now read user commits...')
+    setTimeout((username) => {        
         let commits_arr = ['commit1', 'commit2', 'commit3' ];
-        //console.log('user repo commits: ', commits_arr);
         commits(commits_arr);
     }, 
     2000);
