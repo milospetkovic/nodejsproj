@@ -13,8 +13,8 @@ console.log('Before');
 //     })
 // });
 
-const u = getUser(1);
-u.then(user => console.log('User fetched ', user));
+getUser(1)
+.then(user => console.log('User fetched ', user));
 
 console.log('After');
 
