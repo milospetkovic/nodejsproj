@@ -1,3 +1,4 @@
 /.idea
 express-demo/node_modules/*
 vidly-proj/node_modules/*
+mongo-demo/node_modules/*
