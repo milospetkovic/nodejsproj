@@ -14,9 +14,9 @@ const p2 = new Promise((resolve) => {
     }, 3000);
 });
 
-Promise.all([p1, p2])
-.then(result => console.log('Result', result))
-.catch(error => console.log('Error ocurred ', error.message));
+// Promise.all([p1, p2])
+// .then(result => console.log('Result', result))
+// .catch(error => console.log('Error ocurred ', error.message));
 
 Promise.race([p1, p2])
 .then(result => console.log('Result', result))
