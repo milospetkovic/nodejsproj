@@ -14,7 +14,10 @@ console.log('Before');
 // });
 
 getUser(1)
-.then(user => console.log('User fetched ', user));
+.then(user => getUserGithubRepos(user.id))
+.then(repos => getUserRepoCommites(repos[0]))
+.then(commits => console.log('Commits', commits))
+.catch(err => console.log(err));
 
 console.log('After');
 
