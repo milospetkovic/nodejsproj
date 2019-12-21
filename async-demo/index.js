@@ -1,4 +1,6 @@
 console.log('Before');
+
+// 1. Callbacks
 // getUser(1, (user) => {    
 //     console.log('USER params: ', user);
 //     getUserGithubRepos(user.id, (repos) => {
@@ -13,11 +15,27 @@ console.log('Before');
 //     })
 // });
 
-getUser(1)
-.then(user => getUserGithubRepos(user.id))
-.then(repos => getUserRepoCommites(repos[0]))
-.then(commits => console.log('Commits', commits))
-.catch(err => console.log(err));
+// 2. Promises
+// getUser(1)
+// .then(user => getUserGithubRepos(user.id))
+// .then(repos => getUserRepoCommites(repos[0]))
+// .then(commits => console.log('Commits', commits))
+// .catch(err => console.log(err));
+
+// 3. Async and wait
+async function getCommits() {
+    try {
+        const user = await getUser(1);
+        const repos = await getUserGithubRepos(user.id);
+        const commits = await getUserRepoCommites(user.name);
+        console.log('Fetched user commits', commits);
+    } 
+    catch(err) {
+        console.log('Error...', err.message)
+    }
+}
+
+getCommits();
 
 console.log('After');
 
@@ -37,6 +55,7 @@ function getUserGithubRepos(id) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(['repo1', 'repo2', 'repo3']);
+            //reject(new Error('I\m testing returning error from promise called from async function'));
         }, 2000);
     });
 }
