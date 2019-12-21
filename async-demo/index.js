@@ -1,17 +1,20 @@
 console.log('Before');
-getUser(1, (user) => {    
-    console.log('USER params: ', user);
-    getUserGithubRepos(user.id, (repos) => {
-        console.log('USER repos: ', repos);
-        getUserRepoCommites(user.name, (commits) => {            
-            if (commits.length > 0) {
-                console.log('User\s commits: ', commits);
-            } else {
-                console.log('User doesn\'t have commits in the repo');
-            }
-        })
-    })
-});
+// getUser(1, (user) => {    
+//     console.log('USER params: ', user);
+//     getUserGithubRepos(user.id, (repos) => {
+//         console.log('USER repos: ', repos);
+//         getUserRepoCommites(user.name, (commits) => {            
+//             if (commits.length > 0) {
+//                 console.log('User\s commits: ', commits);
+//             } else {
+//                 console.log('User doesn\'t have commits in the repo');
+//             }
+//         })
+//     })
+// });
+
+const u = getUser(1);
+u.then(user => console.log('User fetched ', user));
 
 console.log('After');
 
