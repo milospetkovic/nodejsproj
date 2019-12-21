@@ -1,7 +1,7 @@
 console.log('Before');
 getUser(1, (user) => {    
     console.log('USER params: ', user);
-    getUserGithubRepos(user.id, function(repos) {
+    getUserGithubRepos(user.id, (repos) => {
         console.log('USER repos: ', repos);
         getUserRepoCommites(user.name, (commits) => {            
             if (commits.length > 0) {
@@ -15,28 +15,34 @@ getUser(1, (user) => {
 
 console.log('After');
 
-// callback
-function getUser(id, callback) {    
+// use promise (instead of callback)
+function getUser(id) {    
     console.log('Reading a user from a database...');
-    setTimeout(() => {        
-        callback({ id: id, name: 'milos' });
-    }, 2000);
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {                    
+            resolve({ id: id, name: 'milos' });
+        }, 2000);
+    });    
 }
 
 // get user repositories
-function getUserGithubRepos(id, callback) {
+function getUserGithubRepos(id) {
     console.log('now get user\'s github repos');
-    setTimeout(() => {
-        callback(['repo1', 'repo2', 'repo3']);
-    }, 2000);    
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(['repo1', 'repo2', 'repo3']);
+        }, 2000);
+    });
 }
 
 // get user repository commits
-function getUserRepoCommites(username, commits) {
-    console.log('now read user commits...')
-    setTimeout((username) => {        
-        let commits_arr = ['commit1', 'commit2', 'commit3' ];
-        commits(commits_arr);
-    }, 
-    2000);
+function getUserRepoCommites(username) {
+    console.log('now read user commits...');
+    return new Promise((resolve, reject) => {
+        setTimeout((username) => {        
+            let commits_arr = ['commit1', 'commit2', 'commit3' ];
+            resolve(commits_arr);
+        }, 
+        2000);
+    });
 }
